@@ -9,8 +9,8 @@ Simply do this and you'll get an HTML layout ready to print out:
 
 ```php
 include_once "visualizer.class.php";
-$v = new XSDVis\Visualizer('example/schema.xsd');
-echo $v->draw();
+$visualizer = new XSDVis\Visualizer('example/schema.xsd');
+echo $visualizer->draw();
 ```
 
 Add styles, some interactivity, and you're in business. An example is provided on how this can be achieved.
@@ -19,10 +19,11 @@ If you don't like the output of Visualizer itself, you sure can make your own cl
 
 Simply call parser directly and use it's results to your desire; check with Visualizer for reference.
 ```php
+include_once "parser.class.php";
 try {
-  $this->parser = new XSDVis\Parser($filepath);
+  $parser = new XSDVis\Parser($filepath);
 } catch (Exception $e) {
   echo "Parser - Exception occurred: " . $e->getMessage();
 }
-$this->parser->parse();
+$parser->parse();
 ```
