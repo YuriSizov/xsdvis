@@ -1,0 +1,38 @@
+{
+  "visualizer": {
+    "types": {
+      "basic_type": "Basic type %s",
+      "simple_type": "Simple type",
+      "simple_type_on_basic": "Simple type based on basic",
+      "simple_type_on_other": "Simple type based on %s",
+      "complex_type": "Complex type"
+    },
+    "restrictions": {
+      "allowed_values": "Allowed values: <b>%s</b>",
+      "pattern": "Value matches pattern: <b>%s</b>",
+      "min_value_inc": "Value from (inclusive) <b>%s</b>",
+      "max_value_inc": "Value to (inclusive) <b>%s</b>",
+      "min_value_exc": "Value from (exclusive) <b>%s</b>",
+      "max_value_exc": "Value to (exclusive) <b>%s</b>",
+
+      "complex_all": "<b>All</b> child elements must be present",
+      "complex_choice": "<b>One of</b> child elements must be present",
+      "complex_sequence": "A <b>sequence of</b> child elements must be present from %s to %s times",
+      "complex_sequence_to_infinite": "infinite number of",
+      "complex_skip_not_required": "Not required elements can be skipped"
+    },
+    "layout": {
+      "element_name": "Element name",
+      "description": "Description",
+      "restrictions": "Restrictions",
+      "complex_type": "Complex rules",
+      "not_required": "not required"
+    }
+  },
+  "parser": {
+    "types": {
+      "simple_type": "simple type",
+      "complex_type": "complex type"
+    }
+  }
+}

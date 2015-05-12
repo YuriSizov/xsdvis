@@ -1,0 +1,38 @@
+{
+  "visualizer": {
+    "types": {
+      "basic_type": "Базовый тип %s",
+      "simple_type": "Простой тип",
+      "simple_type_on_basic": "Простой тип на основе базового",
+      "simple_type_on_other": "Простой тип на основе %s",
+      "complex_type": "Составной тип"
+    },
+    "restrictions": {
+      "allowed_values": "Допустимые значения: <b>%s</b>",
+      "pattern": "Значение соответствует маске: <b>%s</b>",
+      "min_value_inc": "Значение от (включительно) <b>%s</b>",
+      "max_value_inc": "Значение до (включительно) <b>%s</b>",
+      "min_value_exc": "Значение от (не включительно) <b>%s</b>",
+      "max_value_exc": "Значение до (не включительно) <b>%s</b>",
+
+      "complex_all": "Требуется указать <b>все</b> дочерние элементы",
+      "complex_choice": "Требуется указать <b>один из</b> дочерних элементов",
+      "complex_sequence": "Требуется указать <b>последовательность</b> дочерних элементов от %s до %s раз",
+      "complex_sequence_to_infinite": "неограниченного числа",
+      "complex_skip_not_required": "Необязательные элементы можно опустить"
+    },
+    "layout": {
+      "element_name": "Название элемента",
+      "description": "Описание",
+      "restrictions": "Ограничения",
+      "complex_type": "Составной тип",
+      "not_required": "необязательный"
+    }
+  },
+  "parser": {
+    "types": {
+      "simple_type": "простой тип",
+      "complex_type": "составной тип"
+    }
+  }
+}
