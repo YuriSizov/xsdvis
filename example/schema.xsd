@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="123" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>
+      An example of XSD file to showcase features of XSDVis
+    </xs:documentation>
+  </xs:annotation>
+
+  <!-- Root -->
+  <xs:element name="children" type="arrayOfPersonBlock">
+    <xs:annotation>
+      <xs:documentation>
+        A set of person blocks
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+
+  <!-- Types -->
+  <!-- Person related types -->
+  <xs:complexType name="arrayOfPersonBlock">
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="person" type="personBlock" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="personBlock">
+    <xs:annotation>
+      <xs:documentation>
+        Person block
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:all>
+      <!-- Personal Information -->
+      <xs:element name="name">
+        <xs:annotation>
+          <xs:documentation>
+            Full name
+          </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="last" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>
+                  Last name
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="first" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>
+                  First name
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="middle" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  Middle name
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="idSex">
+        <xs:annotation>
+          <xs:documentation>
+            Sex: 1 - male, 2 - female
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="1" />
+            <xs:enumeration value="2" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dateOfBirth" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>
+            Date of birth
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="personalID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Personal identification number
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{2}" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="insuranceCompany" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Insurance company code (curated and restricted elsewhere)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="address">
+        <xs:annotation>
+          <xs:documentation>
+            Living address
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="index" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  Postal code
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[1-9][0-9]{5}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="town">
+              <xs:annotation>
+                <xs:documentation>
+                  Town code (curated elsewhere)
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9]{13}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="street" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  Street code (curated elsewhere)
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9]{17}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="building" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  Building number
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="appartment" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  Appartment number
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <!-- Data sections -->
+      <xs:element name="cards" type="arrayOfDataBlock" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+
+
+  <!-- Data related types -->
+  <xs:complexType name="arrayOfDataBlock">
+    <xs:annotation>
+      <xs:documentation>
+        A set of data blocks
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="card" type="dataBlock" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dataBlock">
+    <xs:annotation>
+      <xs:documentation>
+        Person data block
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:all>
+      <xs:element name="dateGathered" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>
+            Date this data was gathered
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="height" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Person's height (centimeters)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="weight" type="xs:decimal">
+        <xs:annotation>
+          <xs:documentation>
+            Person's weight (kilograms)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="healthProblems" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Registered health problems
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="2">
+            <xs:element name="problem">
+              <xs:annotation>
+                <xs:documentation>
+                  1 — body mass deficit
+                  2 — body mass excess
+                  3 — short stature
+                  4 — long stature
+
+                  Any two are permitted, that do not conflict
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:int">
+                  <xs:enumeration value="1" />
+                  <xs:enumeration value="2" />
+                  <xs:enumeration value="3" />
+                  <xs:enumeration value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="healthGroup">
+        <xs:annotation>
+          <xs:documentation>
+            Health group number (1 through 5)
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1" />
+            <xs:maxInclusive value="5" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="exerciseGroup" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Physical exercise group
+            1-4 — group numbers
+            -1 — not allowed to exercise
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="-1" />
+            <xs:enumeration value="1" />
+            <xs:enumeration value="2" />
+            <xs:enumeration value="3" />
+            <xs:enumeration value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="diagnoses" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Registered diagnoses
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="diagnosis">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="icd" type="ICDCode" />
+                  <xs:element name="medicalWatch">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Medical watch status
+
+                        1 — already on watchlist
+                        2 — was put on watchlist
+                        3 — not on watchlist
+                      </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:int">
+                        <xs:enumeration value="1" />
+                        <xs:enumeration value="2" />
+                        <xs:enumeration value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="treatment" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Treatment information
+                      </xs:documentation>
+                    </xs:annotation>
+
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="condition" type="treatmentConditions" />
+                        <xs:element name="organ" type="treatingOrganizationType" />
+                        <xs:element name="notDone" type="treatmentNotPerformed" minOccurs="0">
+                          <xs:annotation>
+                            <xs:documentation>
+                              Treatment was not performed as prescribed
+                            </xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:all>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="tests" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Various medical tests performed on person
+          </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="record">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="date" type="xs:date">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Date tested
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Name of the procedure
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="results" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Results
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="examinations">
+        <xs:annotation>
+          <xs:documentation>
+            Medical examinations
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="11">
+            <xs:element name="record">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="id">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Medical specialist code
+
+                        1 — Therapist
+                        2 — Neurologist
+                        3 — Ophthalmologist
+                        4 — Surgeon
+                        5 — ENT doctor
+                        6 — Orthopedist
+                        7 — Psychiatrist
+                        8 — Dentist
+                        9 — Endocrinologist
+                        10 — Andrologist
+                        11 — Gynecologist
+                      </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:int">
+                        <xs:enumeration value="1" />
+                        <xs:enumeration value="2" />
+                        <xs:enumeration value="3" />
+                        <xs:enumeration value="4" />
+                        <xs:enumeration value="5" />
+                        <xs:enumeration value="6" />
+                        <xs:enumeration value="7" />
+                        <xs:enumeration value="8" />
+                        <xs:enumeration value="9" />
+                        <xs:enumeration value="10" />
+                        <xs:enumeration value="11" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="date" type="xs:date">
+                    <xs:annotation>
+                      <xs:documentation>
+                        Date examined
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:all>
+  </xs:complexType>
+
+  <xs:simpleType name="ICDCode">
+    <xs:annotation>
+      <xs:documentation>
+        ICD-10 code
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][0-9]{2}(\.[0-9])?" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="treatmentConditions">
+    <xs:annotation>
+      <xs:documentation>
+        1 — Clinic care
+        2 — Day hospital care
+        3 — Hospital care
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="treatingOrganizationType">
+    <xs:annotation>
+      <xs:documentation>
+        1 — local organization
+        2 — state organization
+        3 — federal organization
+        4 — private organization
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="treatmentNotPerformed">
+    <xs:all>
+      <xs:element name="reason" type="treatmentNotPerformedReason" />
+      <xs:element name="reasonOther" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Non standard reason
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="treatmentNotPerformedReason">
+    <xs:annotation>
+      <xs:documentation>
+        Common reason
+
+        1 — went missing during examination time
+        2 — refusal to be examined
+        3 — moved to another location
+        4 — performed only partially
+        5 — organizational difficulties
+        10 — other reason
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="4" />
+      <xs:enumeration value="5" />
+      <xs:enumeration value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
